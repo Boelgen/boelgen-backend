@@ -32,7 +32,7 @@ jobs:
           echo "DB_HOSTNAME=${DB_HOSTNAME}" >> $GITHUB_ENV
 
       - name: Build application
-        run: ./mvnw clean package
+        run: ./gradlew clean build
 
       - name: Deploy application
         run: |
