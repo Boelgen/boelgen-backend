@@ -1,0 +1,39 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17' # Adjust to your project's Java version
+          distribution: 'temurin' # Specify the Java distribution (e.g., temurin, zulu, adopt)
+
+      - name: Set environment variables
+        env:
+          DB_NAME: ${{ secrets.DB_NAME }}
+          DB_USERNAME: ${{ secrets.DB_USERNAME }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          DB_HOSTNAME: ${{ secrets.DB_HOSTNAME }}
+        run: |
+          echo "DB_NAME=${DB_NAME}" >> $GITHUB_ENV
+          echo "DB_USERNAME=${DB_USERNAME}" >> $GITHUB_ENV
+          echo "DB_PASSWORD=${DB_PASSWORD}" >> $GITHUB_ENV
+          echo "DB_HOSTNAME=${DB_HOSTNAME}" >> $GITHUB_ENV
+
+      - name: Build application
+        run: ./gradlew clean build
+
+      - name: Deploy application
+        run: |
+          docker-compose --file app/compose.yaml up --build -d
