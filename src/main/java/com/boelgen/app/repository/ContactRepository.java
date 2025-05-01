@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import com.boelgen.app.model.Contact;
 @Repository
 public interface ContactRepository extends org.springframework.data.jpa.repository.JpaRepository<Contact, Integer> {
-  List<Contact> findAll();
+  List<Contact> findAll(List<Contact> contacts);
   Contact findByName(String name);
-  
+
 }
