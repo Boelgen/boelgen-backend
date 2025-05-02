@@ -44,8 +44,8 @@ jobs:
       - name: Deploy application
         run: |
           sudo apt install docker-compose
-          docker-compose --file app/compose.yaml down
-          docker-compose --file app/compose.yaml up --build -d
+          docker-compose --file ./compose.yaml down
+          docker-compose --file ./compose.yaml up --build -d
         env:
           MYSQL_USERNAME: ${{ secrets.MYSQL_USERNAME }}
           MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
