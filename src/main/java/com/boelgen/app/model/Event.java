@@ -1,6 +1,7 @@
 package com.boelgen.app.model;
 import java.net.URL;
 import java.sql.Date;
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -27,4 +28,5 @@ public class Event {
   private float price;
   private int contactId;
   private String type;
+
 }
