@@ -12,7 +12,4 @@ public interface EventRepository extends org.springframework.data.jpa.repository
     List<Event> findByDate(Date date);
     List<Event> findByPrice(float price);
     List<Event> findByContactId(int contactId);
-    List<Event> findByDescriptionContaining(String keyword);
-    List<Event> findByTypeAndPriceLessThan(String type, float price);
-    List<Event> findAll(List<Event> events);
 }
