@@ -23,11 +23,11 @@ public class Event {
   private Date date;
   @Id
   @GeneratedValue(strategy=GenerationType.AUTO)
-  private int id;
+  private int event_id;
   private String description;
   private URL imageUrl;
   private URL ticketLink;
   private float price;
-  private int contactId;
+  private int contact_id;
   private String type;
 }

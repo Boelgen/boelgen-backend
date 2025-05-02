@@ -16,11 +16,11 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "contact")
+@Table(name = "kontakt")
 public class Contact {
   @Id
   @GeneratedValue(strategy=GenerationType.AUTO)
-  private int id;
+  private int contact_id;
   private String name;
   private String email;
   private String phone;
