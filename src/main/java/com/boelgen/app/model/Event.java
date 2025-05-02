@@ -3,10 +3,13 @@ import java.net.URL;
 import java.sql.Date;
 import java.util.List;
 
+import org.hibernate.annotations.ForeignKey;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,6 +31,7 @@ public class Event {
   private URL imageUrl;
   private URL ticketLink;
   private float price;
+  @JoinColumn(name = "contact_id")
   private int contact_id;
   private String type;
 }
