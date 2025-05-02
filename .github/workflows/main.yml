@@ -6,35 +6,49 @@ on:
       - main
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Checkout the code
       - name: Checkout code
         uses: actions/checkout@v3
 
+      # Step 2: Set up JDK
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
-          java-version: '17' # Adjust to your project's Java version
-          distribution: 'temurin' # Specify the Java distribution (e.g., temurin, zulu, adopt)
+          java-version: '17'
+          distribution: 'temurin'
 
+      # Step 3: Set environment variables
       - name: Set environment variables
         env:
-          DB_NAME: ${{ secrets.DB_NAME }}
-          DB_USERNAME: ${{ secrets.DB_USERNAME }}
-          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-          DB_HOSTNAME: ${{ secrets.DB_HOSTNAME }}
+          MYSQL_USERNAME: ${{ secrets.MYSQL_USERNAME }}
+          MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
+          MYSQL_HOSTNAME: ${{ secrets.MYSQL_HOSTNAME }}
+          MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
+          MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
         run: |
-          echo "DB_NAME=${DB_NAME}" >> $GITHUB_ENV
-          echo "DB_USERNAME=${DB_USERNAME}" >> $GITHUB_ENV
-          echo "DB_PASSWORD=${DB_PASSWORD}" >> $GITHUB_ENV
-          echo "DB_HOSTNAME=${DB_HOSTNAME}" >> $GITHUB_ENV
+          echo "MYSQL_USERNAME=${MYSQL_USERNAME}" >> $GITHUB_ENV
+          echo "MYSQL_PASSWORD=${MYSQL_PASSWORD}" >> $GITHUB_ENV
+          echo "MYSQL_HOSTNAME=${MYSQL_HOSTNAME}" >> $GITHUB_ENV
+          echo "MYSQL_DATABASE=${MYSQL_DATABASE}" >> $GITHUB_ENV
+          echo "MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}" >> $GITHUB_ENV
 
+      # Step 4: Build the application
       - name: Build application
         run: ./gradlew clean build
 
+      # Step 5: Deploy the application
       - name: Deploy application
         run: |
           sudo apt install docker-compose
-          docker-compose --file ./compose.yaml up --build -d
+          docker-compose --file app/compose.yaml down
+          docker-compose --file app/compose.yaml up --build -d
+        env:
+          MYSQL_USERNAME: ${{ secrets.MYSQL_USERNAME }}
+          MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
+          MYSQL_HOSTNAME: ${{ secrets.MYSQL_HOSTNAME }}
+          MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
+          MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
