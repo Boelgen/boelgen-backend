@@ -22,19 +22,13 @@ jobs:
           distribution: 'temurin'
 
       # Step 3: Set environment variables
-      - name: Set environment variables
-        env:
-          MYSQL_USERNAME: ${{ secrets.MYSQL_USERNAME }}
-          MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
-          MYSQL_HOSTNAME: ${{ secrets.MYSQL_HOSTNAME }}
-          MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
-          MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
+      - name: Create .env file
         run: |
-          echo "MYSQL_USERNAME=${MYSQL_USERNAME}" >> $GITHUB_ENV
-          echo "MYSQL_PASSWORD=${MYSQL_PASSWORD}" >> $GITHUB_ENV
-          echo "MYSQL_HOSTNAME=${MYSQL_HOSTNAME}" >> $GITHUB_ENV
-          echo "MYSQL_DATABASE=${MYSQL_DATABASE}" >> $GITHUB_ENV
-          echo "MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}" >> $GITHUB_ENV
+          echo "MYSQL_USERNAME=${{ secrets.MYSQL_USERNAME }}" >> .env
+          echo "MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }}" >> .env
+          echo "MYSQL_HOSTNAME=${{ secrets.MYSQL_HOSTNAME }}" >> .env
+          echo "MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }}" >> .env
+          echo "MYSQL_ROOT_PASSWORD=${{ secrets.MYSQL_ROOT_PASSWORD }}" >> .env
 
       # Step 4: Build the application
       - name: Build application
