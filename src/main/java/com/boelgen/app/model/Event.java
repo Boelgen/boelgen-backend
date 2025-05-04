@@ -1,20 +1,18 @@
 package com.boelgen.app.model;
 import java.net.URL;
 import java.sql.Date;
-import java.util.List;
-
-import org.hibernate.annotations.ForeignKey;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -22,16 +20,17 @@ import lombok.Setter;
 @Entity
 @Table(name = "event")
 public class Event {
-  private String name;
-  private Date date;
   @Id
   @GeneratedValue(strategy=GenerationType.AUTO)
   private int event_id;
-  private String description;
-  private URL imageUrl;
-  private URL ticketLink;
-  private float price;
-  @JoinColumn(name = "contact_id")
-  private int contact_id;
   private String type;
+  private Date date;
+  private String name;
+  private String description;
+  private URL image;
+  private URL ticket_link;
+  private float price;
+  @ManyToOne
+  @JoinColumn(name = "contact_id", referencedColumnName = "contact_id")
+  private Contact contact;
 }
