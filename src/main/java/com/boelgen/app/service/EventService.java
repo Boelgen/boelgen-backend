@@ -2,13 +2,16 @@ package com.boelgen.app.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.boelgen.app.repository.EventRepository;
 import com.boelgen.app.model.Event;
 
 @Service
 public class EventService {
-  private final EventRepository eventRepository;
+
+  @Autowired
+  private EventRepository eventRepository;
   public EventService(EventRepository eventRepository) {
     this.eventRepository = eventRepository;
   }

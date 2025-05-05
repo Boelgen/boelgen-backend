@@ -18,17 +18,17 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "event")
+@Table(name = "event", schema = "boelgen")
 public class Event {
   @Id
   @GeneratedValue(strategy=GenerationType.AUTO)
-  private int event_id;
+  private Long event_id;
   private String type;
   private Date date;
   private String name;
   private String description;
-  private URL image;
-  private URL ticket_link;
+  private String image;
+  private String ticket_link;
   private float price;
   @ManyToOne
   @JoinColumn(name = "contact_id", referencedColumnName = "contact_id")

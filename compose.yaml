@@ -1,7 +1,0 @@
-services:
-  mysql:
-    image: "mysql:latest"
-    env_file:
-      - variables.env # Load environment variables from a .env file
-    ports:
-      - "3307:3306" # Map MySQL container's port 3306 to host port 3307 to avoid conflicts
