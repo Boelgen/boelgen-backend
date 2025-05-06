@@ -25,7 +25,7 @@ public class Event {
   private Long event_id;
   private String type;
   private Date date;
-  private String name;
+  private String title;
   private String description;
   private String image;
   private String ticket_link;

@@ -1,25 +1,33 @@
 package com.boelgen.app.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 
+import com.boelgen.app.model.Event;
 import com.boelgen.app.service.EventService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 
-@Controller
+@RestController
+@RequestMapping("/api")
 public class EventController {
-  @Autowired
+
   public final EventService eventService;
+
   public EventController(EventService eventService) {
     this.eventService = eventService;
   }
 
   @GetMapping("/events")
-  public String getMethodName(@RequestParam(required = false) String param) {
-      eventService.getAllEvents();
-      return "events";
-  }
+    public ResponseEntity<List<Event>> getAllEvents() {
+        List<Event> events = eventService.getAllEvents();
+        return ResponseEntity.ok(events);  // Returns JSON
+    }
   
 }
