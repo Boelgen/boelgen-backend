@@ -21,8 +21,8 @@ public class Contact {
   @GeneratedValue(strategy=GenerationType.AUTO)
   private int contact_id;
   private String name;
-  private String email;
+  private String mail;
   private String phone;
   private String title;
-  private URL image;
+  private String image;
 }

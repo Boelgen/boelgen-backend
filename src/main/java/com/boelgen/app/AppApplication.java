@@ -13,6 +13,7 @@ import jakarta.persistence.Entity;
 public class AppApplication {
 
 	public static void main(String[] args) {
+        
          // Load the .env file
          Dotenv dotenv = Dotenv.configure()
         
@@ -46,6 +47,7 @@ public class AppApplication {
         System.out.println("From dotenv - MYSQL_USERNAME: " + dotenv.get("MYSQL_USERNAME"));
         System.out.println("From dotenv - MYSQL_HOSTNAME: " + dotenv.get("MYSQL_HOSTNAME"));
         System.out.println("From dotenv - MYSQL_DATABASE: " + dotenv.get("MYSQL_DATABASE"));
+        
 	}
 
     
@@ -54,4 +56,5 @@ public class AppApplication {
 	    System.out.println("MYSQL_HOSTNAME: " + System.getProperty("MYSQL_HOSTNAME"));
 	    System.out.println("MYSQL_DATABASE: " + System.getProperty("MYSQL_DATABASE"));
 	}
+        
 }

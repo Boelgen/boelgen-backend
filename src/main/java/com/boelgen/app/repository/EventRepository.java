@@ -8,8 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.boelgen.app.model.Event;
 
 @Repository
-public interface EventRepository extends org.springframework.data.jpa.repository.JpaRepository<com.boelgen.app.model.Event, Long> {
-    List<Event> findByName(String name);
+public interface EventRepository extends org.springframework.data.jpa.repository.JpaRepository<com.boelgen.app.model.Event, Integer> {
     List<Event> findByType(String type);
     List<Event> findByDate(Date date);
     List<Event> findByPrice(float price);
