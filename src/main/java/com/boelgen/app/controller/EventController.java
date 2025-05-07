@@ -29,5 +29,11 @@ public class EventController {
         List<Event> events = eventService.getAllEvents();
         return ResponseEntity.ok(events);  // Returns JSON
     }
+
+  @GetMapping("/events/search")
+  public ResponseEntity<List<Event>> searchEvents(@RequestParam String query) {
+    List<Event> events = eventService.searchEvents(query);
+    return ResponseEntity.ok(events);  // Returns JSON
+  }
   
 }
