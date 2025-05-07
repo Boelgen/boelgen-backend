@@ -1,5 +1,4 @@
 package com.boelgen.app.model;
-import java.net.URL;
 import java.sql.Date;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

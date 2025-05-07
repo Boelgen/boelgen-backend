@@ -6,7 +6,6 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import io.github.cdimascio.dotenv.Dotenv;
 import jakarta.annotation.PostConstruct;
-import jakarta.persistence.Entity;
 
 @SpringBootApplication
 @EntityScan(basePackages = "com.boelgen.app.model") 
