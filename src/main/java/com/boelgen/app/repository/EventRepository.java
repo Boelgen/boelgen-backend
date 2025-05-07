@@ -13,6 +13,6 @@ public interface EventRepository extends org.springframework.data.jpa.repository
     List<Event> findByDate(Date date);
     List<Event> findByPrice(float price);
 
-    @Query("SELECT e FROM Event e WHERE e.title LIKE %:query% OR e.description LIKE %:query%")
-    List<Event> searchEvents(@Param("query") String query, @Param("type") String type);
+    @Query("SELECT e FROM Event e WHERE e.title LIKE %:query% OR e.description LIKE %:query% OR e.type LIKE %:query%")
+    List<Event> searchEvents(@Param("query") String query);
 }

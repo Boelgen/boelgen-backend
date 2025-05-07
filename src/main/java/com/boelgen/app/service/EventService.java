@@ -20,7 +20,7 @@ public class EventService {
     return eventRepository.findAll();
   }
   
-  public List<Event> searchEvents(String query, String additionalParam) {
-    return eventRepository.searchEvents(query, additionalParam);
+  public List<Event> searchEvents(String query) {
+    return eventRepository.searchEvents(query);
   }
 }
