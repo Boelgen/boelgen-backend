@@ -1,5 +1,6 @@
 package com.boelgen.app.controller;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
@@ -33,4 +34,10 @@ public class EventController {
     return ResponseEntity.ok(events);  // Returns JSON
   }
   
+  @GetMapping("/events/by-date")
+  public ResponseEntity<List<Event>> getEventsByDate(@RequestParam Date date) {
+      List<Event> events = eventService.getEventsByDate(date);
+      return ResponseEntity.ok(events);
+  }
+
 }
