@@ -15,7 +15,7 @@ public class AppApplication {
          // Load the .env file
          Dotenv dotenv = Dotenv.configure()
         
-         .filename("variables.env") // Specify the .env file name
+         .filename(".env") // Specify the .env file name
          .load();
 
      // Set environment variables
