@@ -28,4 +28,8 @@ public class EventService {
   public List<Event> getEventsByDate(Date date) {
     return eventRepository.findByDate(date);
 }
+
+public List<Event> getEventsByDescription(String description) {
+  return eventRepository.searchEvents(description);
+}
 }
