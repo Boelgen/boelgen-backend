@@ -22,14 +22,14 @@ public class Event {
   @Id
   @GeneratedValue(strategy=GenerationType.AUTO)
   private Long event_id;
-  private String type;
   private Date date;
   private String title;
   private String description;
   private String image;
   private String ticket_link;
-  private float price;
+  private String price;
   @ManyToOne
   @JoinColumn(name = "contact_id", referencedColumnName = "contact_id")
   private Contact contact;
+  private boolean is_cancelled;
 }
