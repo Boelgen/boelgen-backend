@@ -11,6 +11,6 @@ import com.boelgen.app.model.Event;
 public interface EventRepository extends org.springframework.data.jpa.repository.JpaRepository<com.boelgen.app.model.Event, Integer> {
     List<Event> findByDate(Date date);
 
-    @Query("SELECT e FROM Event e WHERE e.title LIKE %:query% OR e.description LIKE %:query%")
+    @Query("SELECT e FROM Event e WHERE e.title LIKE %:query% OR e.description LIKE %:query% OR e.additional_information LIKE %:query%")
     List<Event> searchEvents(@Param("query") String query);
 }

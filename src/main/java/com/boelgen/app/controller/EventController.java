@@ -41,10 +41,10 @@ public class EventController {
   }
 
   @GetMapping("/events/filter")
-public ResponseEntity<List<Event>> getEvents(@RequestParam(value = "description", required = false) String description) {
+public ResponseEntity<List<Event>> getEvents(@RequestParam(value = "q", required = false) String query) {
     List<Event> events;
-    if (description != null) {
-        events = eventService.getEventsByDescription(description);
+    if (query != null) {
+        events = eventService.getEventsByDescriptionOrAdditionalInfo(query);
     } else {
         events = eventService.getAllEvents();
     }

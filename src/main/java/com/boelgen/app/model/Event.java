@@ -32,4 +32,5 @@ public class Event {
   @JoinColumn(name = "contact_id", referencedColumnName = "contact_id")
   private Contact contact;
   private boolean is_cancelled;
+  private String additional_information;
 }

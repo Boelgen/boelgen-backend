@@ -32,4 +32,10 @@ public class EventService {
 public List<Event> getEventsByDescription(String description) {
   return eventRepository.searchEvents(description);
 }
+
+public List<Event> getEventsByDescriptionOrAdditionalInfo(String query) {
+    return eventRepository.searchEvents(query);
 }
+
+}
+
