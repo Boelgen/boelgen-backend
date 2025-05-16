@@ -23,6 +23,7 @@ jobs:
             cd /home/boelgenbruger/backend
             git pull origin main
             gradle clean build
+            java -jar build/libs/*.jar &
 
       - name: Run backend with Docker Compose
         uses: appleboy/ssh-action@v1.0.3
