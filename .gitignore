@@ -6,6 +6,7 @@ build/
 !**/src/test/**/build/
 .env
 app/src/main/resources/application.properties
+node_modules/
 
 ### STS ###
 .apt_generated
@@ -37,5 +38,3 @@ out/
 
 ### VS Code ###
 .vscode/
-
-node_modules/
