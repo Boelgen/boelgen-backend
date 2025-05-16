@@ -25,7 +25,7 @@ jobs:
             gradle clean build
             java -jar build/libs/*.jar &
 
-      - name: Restart backend with Docker Compose
+      - name: Run backend with Docker Compose
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.AZURE_HOST }}
