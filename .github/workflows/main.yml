@@ -33,5 +33,5 @@ jobs:
           key: ${{ secrets.AZURE_SSH_KEY }}
           script: |
             cd /home/boelgenbruger/backend
-            docker compose down
-            docker compose up -d --build
+            docker-compose down
+            docker-compose up -d --build
