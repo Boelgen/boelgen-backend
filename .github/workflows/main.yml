@@ -1,37 +1,30 @@
 name: Build & Deploy Spring Boot App
-
 on:
   push:
     branches:
       - main
-
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4.2.2
-
-      - name: SSH Deploy to Azure VM
+      - name: Deploy to Azure VM
         uses: appleboy/ssh-action@v1.2.2
         with:
           host: ${{ secrets.AZURE_HOST }}
           username: ${{ secrets.AZURE_USER }}
           key: ${{ secrets.AZURE_SSH_KEY }}
           script: |
+            # Update code
             cd /home/boelgenbruger/backend
             git pull origin main
+            
+            # Build Java application first
             gradle clean build
-            java -jar build/libs/*.jar &
-
-      - name: Run backend with Docker Compose
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.AZURE_HOST }}
-          username: ${{ secrets.AZURE_USER }}
-          key: ${{ secrets.AZURE_SSH_KEY }}
-          script: |
-            cd /home/boelgenbruger/backend
+            
+            # Stop any existing containers
             docker-compose down
+            
+            # Build and start with Docker
             docker-compose up -d --build
