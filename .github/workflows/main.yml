@@ -24,3 +24,14 @@ jobs:
             git pull origin main
             gradle clean build
             java -jar build/libs/*.jar &
+
+      - name: Restart backend with Docker Compose
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VM_HOST }}
+          username: ${{ secrets.VM_USER }}
+          key: ${{ secrets.VM_SSH_KEY }}
+          script: |
+            cd /home/boelgenbruger/backend
+            docker compose down
+            docker compose up -d --build
