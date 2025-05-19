@@ -1,10 +1,9 @@
 name: Build & Deploy Spring Boot App
-on:
-  push:
-    branches:
-      - main
+on: push
+
 jobs:
   build-and-deploy:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -16,21 +15,24 @@ jobs:
           host: ${{ secrets.AZURE_HOST }}
           username: ${{ secrets.AZURE_USER }}
           key: ${{ secrets.AZURE_SSH_KEY }}
+          script_stop: true
+          command_timeout: "30m"
+          debug: true
           script: |
             echo "Starting deployment..."
             # Update code
             echo "Updating code..."
             cd /home/boelgenbruger/backend
             git pull origin main
-
+            
             # Use Gradle wrapper
             echo "Building with Gradle..."
             chmod +x ./gradlew
             ./gradlew clean build -x test
-
-            # Docker operations - using sudo in case of permission issues
+            
+            # Docker operations
             echo "Stopping existing containers..."
-            sudo docker-compose down
+            docker-compose down
             echo "Building and starting new containers..."
-            sudo docker-compose up -d --build
+            docker-compose up -d --build
             echo "Deployment completed."
