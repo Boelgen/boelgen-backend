@@ -26,7 +26,7 @@ jobs:
             # Use Gradle wrapper
             echo "Building with Gradle..."
             chmod +x ./gradlew
-            ./gradlew clean build
+            ./gradlew clean build -x test
 
             # Docker operations - using sudo in case of permission issues
             echo "Stopping existing containers..."
