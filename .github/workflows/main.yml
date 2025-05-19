@@ -9,6 +9,7 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4.2.2
+
       - name: Deploy to Azure VM
         uses: appleboy/ssh-action@v1.2.2
         with:
@@ -16,14 +17,20 @@ jobs:
           username: ${{ secrets.AZURE_USER }}
           key: ${{ secrets.AZURE_SSH_KEY }}
           script: |
+            echo "Starting deployment..."
             # Update code
+            echo "Updating code..."
             cd /home/boelgenbruger/backend
             git pull origin main
-            
+
             # Use Gradle wrapper
+            echo "Building with Gradle..."
             chmod +x ./gradlew
             ./gradlew clean build
-            
+
             # Docker operations - using sudo in case of permission issues
+            echo "Stopping existing containers..."
             sudo docker-compose down
+            echo "Building and starting new containers..."
             sudo docker-compose up -d --build
+            echo "Deployment completed."
