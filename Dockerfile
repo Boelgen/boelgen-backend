@@ -18,4 +18,4 @@ COPY --chown=appuser:appgroup build/libs/app-0.0.1-SNAPSHOT.jar app.jar
 EXPOSE 8080
 
 # Run with memory optimization flags
-ENTRYPOINT ["java", "-XX:+UseContainerSupport", "-XX:MaxRAMPercentage=75.0", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-Xms256m", "-Xmx512m", "-XX:+UseContainerSupport", "-XX:MaxRAMPercentage=75.0", "-jar", "app.jar"]
