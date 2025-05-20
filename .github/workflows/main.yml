@@ -92,6 +92,10 @@ jobs:
                   - "8080:8080"
                 environment:
                   - SPRING_PROFILES_ACTIVE=prod
+                  - MYSQL_USERNAME=${{ secrets.MYSQL_USERNAME }}
+                  - MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }}
+                  - MYSQL_HOSTNAME=${{ secrets.MYSQL_HOSTNAME }}
+                  - MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }}
                 restart: always
                 deploy:
                   resources:
