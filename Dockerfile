@@ -11,9 +11,6 @@ USER appuser
 
 WORKDIR /app
 
-# Copy .env file to the working directory
-COPY --chown=appuser:appgroup .env /app/.env
-
 # Copy JAR file
 COPY --chown=appuser:appgroup build/libs/app-0.0.1-SNAPSHOT.jar app.jar
 
