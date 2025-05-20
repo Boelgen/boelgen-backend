@@ -1,7 +1,7 @@
 FROM eclipse-temurin:17-jdk-alpine
 
 # Add labels for better container management
-LABEL org.opencontainers.image.source="https://github.com/Boelgen/boelgen-backend"
+LABEL org.opencontainers.image.source="https://github.com/boelgen/boelgen-backend"
 LABEL org.opencontainers.image.description="Spring Boot application"
 LABEL org.opencontainers.image.licenses="MIT"
 
