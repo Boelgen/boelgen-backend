@@ -14,9 +14,6 @@ WORKDIR /app
 # Copy JAR file
 COPY --chown=appuser:appgroup build/libs/app-0.0.1-SNAPSHOT.jar app.jar
 
-# Copy environment file if needed
-COPY --chown=appuser:appgroup .env* ./ || true
-
 # Expose application port
 EXPOSE 8080
 
