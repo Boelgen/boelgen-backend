@@ -73,4 +73,14 @@ public class EventController {
       return ResponseEntity.noContent().build();
   }
 
+@GetMapping("/events/{id}")
+public ResponseEntity<Event> getEventById(@PathVariable Integer id) {
+    Event event = eventService.getEventById(id);
+    if (event != null) {
+        return ResponseEntity.ok(event);
+    } else {
+        return ResponseEntity.notFound().build();
+    }
+}
+
 }

@@ -61,5 +61,10 @@ public class EventService {
     eventRepository.deleteById(id);
   }
 
+  public Event getEventById(Integer id) {
+    return eventRepository.findById(id)
+        .orElseThrow(() -> new RuntimeException("Event not found"));
+  }
+
 }
 
