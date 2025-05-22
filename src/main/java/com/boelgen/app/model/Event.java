@@ -20,7 +20,7 @@ import lombok.Setter;
 @Table(name = "event", schema = "boelgen")
 public class Event {
   @Id
-  @GeneratedValue(strategy=GenerationType.AUTO)
+  @GeneratedValue(strategy=GenerationType.IDENTITY)
   private int event_id;
   private Date date;
   private String title;
