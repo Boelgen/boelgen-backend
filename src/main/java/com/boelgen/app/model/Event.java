@@ -21,7 +21,7 @@ import lombok.Setter;
 public class Event {
   @Id
   @GeneratedValue(strategy=GenerationType.AUTO)
-  private Long event_id;
+  private int event_id;
   private Date date;
   private String title;
   private String description;
